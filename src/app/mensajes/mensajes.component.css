@@ -1,0 +1,12 @@
+div:first-child{
+    background: #333;
+    color: white;
+    font-family: monospace;
+    width: 98%;
+    height: 100px;
+    left: 0px;
+    overflow: auto;
+    position: fixed;
+    bottom: 0px;
+    padding: 0px 10px 5px 10px;
+   }

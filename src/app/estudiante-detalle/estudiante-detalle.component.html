@@ -1,0 +1,91 @@
+
+<br><br>
+<div class="conte">
+    <div class="left">
+        <div class="container">
+            <h4 class="display-5">Editar Alumnos</h4>
+                <div *ngIf="estudiante">
+                    <blockquote class="text-primary">
+                        Nombre:{{estudiante.nombre}},
+                        Apellido:{{estudiante.apellido}},
+                        Identificacion:{{estudiante.identificacion}},
+                        Materia:{{estudiante.materia}}
+                        
+                    </blockquote>
+                        <div class="form-group">
+                        <label >Nombre</label>    
+                            <input  [(ngModel)]="estudiante.nombre" autocomplete="off"  class="form-control" >
+                        </div>
+
+                        <div class="form-group">
+                            <label >Apellido</label>    
+                            <input [(ngModel)]="estudiante.apellido" autocomplete="off"  class="form-control" >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label >Identificacion</label>    
+                            <input [(ngModel)]="estudiante.identificacion" autocomplete="off"  class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label >Materia</label>    
+                            <input patter="[0-5]"[(ngModel)]="estudiante.materia" autocomplete="off"  class="form-control">
+                        </div>
+                            
+                        <div class="form-group">   
+                            <button type="button" class="btn btn-success" (click)="guardar()">Actualizar</button>
+                        </div>
+                </div>
+        </div>
+    </div>
+
+
+    <br><br><br>
+    <br><br><br>
+   <div class="rigth">
+        <div class="container">
+            <h4 class="display-5">Editar Notas</h4>
+            <form [formGroup]="contacto2" (ngSubmit)="onSubmit()" >  
+                   <div *ngIf="estudiante">
+                    <blockquote class="text-primary">
+                        Nota:{{estudiante.nota1}},
+                        Nota2:{{estudiante.nota2}},
+                        Nota3:{{estudiante.nota3}},
+                       
+                    </blockquote>
+                    <button class="btn btn-danger" >Validar Notas</button><br><br>   
+                <div class="form-group">
+                    <label>Nota 1</label>
+                    <input  formControlName="nota1"  [(ngModel)]="estudiante.nota1" class="form-control"   [ngClass]="{ 'is-invalid': submitted && f.nota1.errors}">
+                    <div *ngIf="submitted && f.nota1.errors" class="invalid-feedback">
+                    <div *ngIf="f.identificacion.errors.required">La nota va de 0 a 5 con dos decimales</div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nota 2</label>
+                    <input formControlName="nota2" [(ngModel)]="estudiante.nota2"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nota2.errors}">
+                    <div *ngIf="submitted && f.nota2.errors" class="invalid-feedback">
+                    <div *ngIf="f.nota2.errors.required">La nota va de 0 a 5 con dos decimales</div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nota 3</label>
+                    <input formControlName="nota3" [(ngModel)]="estudiante.nota3" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nota3.errors}">
+                    <div *ngIf="submitted && f.nota3.errors" class="invalid-feedback">
+                    <div *ngIf="f.nota3.errors.required">La nota va de 0 a 5 con dos decimales</div>
+                </div>
+                </div> 
+                    <br>
+                    <div class="form-group"> 
+                     <button  type="button"  class="btn btn-success" (click)="guardar()">Actualizar</button>
+                    </div>
+                </div>    
+         </form>
+        </div>
+        
+    </div>
+
+
+
+</div>

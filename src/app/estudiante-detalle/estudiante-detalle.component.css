@@ -1,0 +1,16 @@
+
+.conte{
+    width: 100%;
+    height: 800px;
+}
+.conte>.left{
+    width: 500px;
+    height: 400px;
+}
+.conte>.rigth{
+    width: 500px;
+    height: 300px;
+    float: right;
+    margin-top: -500px;
+}
+

@@ -1,0 +1,12 @@
+.inicio{
+    width: 100%;
+    height: 60px;
+    background: #333;
+}
+h2{
+    
+    font-family: monospace;
+    position: absolute;
+    text-align: left;
+    color: white;
+}

@@ -1,0 +1,109 @@
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevo">Nuevo Estudiante</button><br><br>
+<div class="modal fade" id="nuevo" tabindex="-1" role="dialog" aria-labelledby="nuevo" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Estudiante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="contacto" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" #estudianteNombre formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors}">
+          <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+            <div *ngIf="f.nombre.errors.required">El nombre es obligatorio</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" #estudianteApellido formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors}">
+          <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+            <div *ngIf="f.apellido.errors.required">El apellido es obligatorio</div>
+          </div>   
+        </div>
+
+        <div class="form-group">
+          <label>Identificacion</label>
+          <input type="number" #estudianteIdentificacion formControlName="identificacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors}">
+          <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback">
+            <div *ngIf="f.identificacion.errors.required">La identificacion es obligatoria</div>
+          </div> 
+        </div>
+        <input #estudianteNota1 type="hidden" disabled=»disabled»>
+        <input #estudianteNota2 type="hidden" disabled=»disabled»>
+        <input #estudianteNota3 type="hidden" disabled=»disabled»>
+        <div class="form-group">
+          <label>Materia</label>
+          <input class="form-control" #estudianteMateria formControlName="materia"  [ngClass]="{ 'is-invalid': submitted && f.materia.errors}">
+          <div *ngIf="submitted && f.materia.errors" class="invalid-feedback">
+            <div *ngIf="f.materia.errors.required"> ingresa una materia</div>
+          </div>       
+        </div>
+
+
+        <div class="form-group">
+          <button class="btn btn-primary" 
+          (click)="nuevo(estudianteNombre.value , estudianteApellido.value, estudianteIdentificacion.value,
+          estudianteNota1.value , estudianteNota2.value, estudianteNota3.value , estudianteMateria.value);
+          estudianteNombre.value=''; estudianteApellido.value=''; estudianteIdentificacion.value=''; 
+          estudianteNota1.value=''; estudianteNota2.value=''; estudianteNota3.value=''; 
+          estudianteMateria.value='';">Aceptar</button>                   
+        </div>
+
+                 
+          </form>       
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Identificacion</th> 
+      <th scope="col">Nota 1</th>
+      <th scope="col">Nota 2</th>
+	    <th scope="col">Nota 3</th>
+	    <th scope="col">Materia</th>
+      <th scope="col">Promedio</th>
+	    <th scope="col">Opcion</th>
+	  
+	  
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudianteItem of estudiantes" [class.selected]="estudianteItem===estudiante">
+	<th>{{estudianteItem.nombre}}</th>
+	<th>{{estudianteItem.apellido}}</th>
+	<th>{{estudianteItem.identificacion}}</th>
+	<th>{{estudianteItem.nota1}}</th>
+	<th>{{estudianteItem.nota2}}</th>
+	<th>{{estudianteItem.nota3}}</th>
+	<th>{{estudianteItem.materia}}</th>
+	<th>{{((estudianteItem.nota1)*(0.35)+(estudianteItem.nota2)*(0.35)+(estudianteItem.nota3)*(0.30))}}</th>
+  
+
+     <th>
+     <a class="btn btn-success" routerLink="/detalle/{{estudianteItem.id}}"><span class="insignia"> </span>Modificar</a>  
+     |
+	 <button class ="btn btn-danger"  data-target="#borrar" title="Eliminar Equipos" (click)="borrar(estudianteItem)"  >Eliminar</button>
+     
+    </th>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+  
